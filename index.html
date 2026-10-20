@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="uk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Мій голос — мій вибір</title>
+<style>
+:root{--bg:#eef2fb;--card:rgba(255,255,255,.82);--tx:#14182a;--mu:#586080;--ac:#2b59c3;--ac2:#f2b705;--bd:rgba(43,89,195,.2);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1020;--card:rgba(24,30,52,.8);--tx:#eef0f9;--mu:#a3abc8;--ac:#8fb0ff;--ac2:#ffd54a;--bd:rgba(143,176,255,.22)}}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{background:radial-gradient(circle at 20% 10%,var(--bg),transparent 70%),linear-gradient(160deg,var(--bg),color-mix(in srgb,var(--ac) 14%,var(--bg)));color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow:hidden}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+#deck{position:relative;z-index:1;height:calc(100% - 64px);overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+section{min-height:100%;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;padding:24px clamp(18px,6vw,80px);max-width:1100px;margin:0 auto}
+@media (min-width:900px){section{margin:0 auto 0 4vw}section.fin{margin:0 auto}}
+section>*{opacity:0;transform:translateY(40px) scale(.97);filter:blur(6px);transition:all .8s cubic-bezier(.2,.8,.2,1)}
+section.in>*{opacity:1;transform:none;filter:none}
+section.in>*:nth-child(2){transition-delay:.12s}section.in>*:nth-child(3){transition-delay:.24s}section.in>*:nth-child(4){transition-delay:.36s}
+h1{font-size:clamp(34px,7vw,68px);margin:0 0 12px;line-height:1.05;background:linear-gradient(90deg,#2b7fff,#ffd500);-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:clamp(24px,4vw,40px);margin:0 0 14px;color:var(--ac)}
+p,li{font-size:clamp(16px,2.1vw,21px);line-height:1.45}
+.mu{color:var(--mu)}
+.g{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.c{background:var(--card);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--bd);border-radius:16px;padding:14px 16px;transition:transform .3s,box-shadow .3s}
+.c:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(43,89,195,.25)}
+.c b{color:var(--ac)}.c p{margin:6px 0 0;font-size:clamp(15px,1.9vw,18px)}
+.g .c{opacity:0;transform:translateY(30px);transition:all .6s cubic-bezier(.2,.8,.2,1)}
+section.in .g .c{opacity:1;transform:none}
+section.in .g .c:nth-child(2){transition-delay:.25s}section.in .g .c:nth-child(3){transition-delay:.4s}section.in .g .c:nth-child(4){transition-delay:.55s}section.in .g .c:nth-child(5){transition-delay:.7s}
+.n{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--ac2);color:#14182a;font-weight:700;margin-right:8px;animation:pulse 2.4s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 8px rgba(242,183,5,.0),0 0 0 0 rgba(242,183,5,.5)}0%{box-shadow:0 0 0 0 rgba(242,183,5,.5)}}
+ul{padding-left:20px;margin:0}li{margin:6px 0}
+.fin{align-items:center;text-align:center;justify-content:flex-end;padding-bottom:12vh}
+nav{position:relative;z-index:2;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-top:1px solid var(--bd);background:var(--card);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+button{font:inherit;font-weight:600;border:0;border-radius:12px;padding:12px 22px;background:var(--ac);color:#fff;cursor:pointer;transition:transform .2s}
+button:active{transform:scale(.92)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button{color:#0c1020}}
+#pg{color:var(--mu);font-size:15px}
+#bar{position:absolute;left:0;top:0;height:3px;background:linear-gradient(90deg,#2b7fff,#ffd500);width:0;transition:width .4s}
+</style></head><body>
+<canvas id="gl"></canvas>
+<div id="deck">
+<section><p class="mu">Громадянська освіта · §6–7</p><h1>Мій голос — мій вибір</h1><p>Звернення громадян, органи влади, вибори — і памʼятка для тих, кому скоро 18.</p><p class="mu">Гортайте свайпом, стрілками або кнопками ↓</p></section>
+
+<section><h2>Звернення громадян</h2>
+<p class="mu">Право звернутися до влади гарантує Конституція; порядок — Закон «Про звернення громадян».</p>
+<div class="g">
+<div class="c"><b>Пропозиція (зауваження)</b><p>Порада, як покращити закони чи роботу влади.</p></div>
+<div class="c"><b>Заява (клопотання)</b><p>Прохання здійснити своє право чи інтерес.</p></div>
+<div class="c"><b>Скарга</b><p>Вимога поновити порушені права й захистити інтереси.</p></div>
+</div>
+<p class="mu">Форми: усні, письмові, електронні. Розгляд — як правило, до 1 місяця.</p></section>
+
+<section><h2>Органи влади</h2>
+<p class="mu">Три гілки влади — щоб ніхто не мав усієї влади.</p>
+<div class="g">
+<div class="c"><b>Законодавча</b><p>Верховна Рада — приймає закони.</p></div>
+<div class="c"><b>Виконавча</b><p>Кабмін, міністерства — виконують закони.</p></div>
+<div class="c"><b>Судова</b><p>Суди — здійснюють правосуддя.</p></div>
+<div class="c"><b>Президент</b><p>Глава держави, гарант Конституції.</p></div>
+<div class="c"><b>Місцеве самоврядування</b><p>Мери, депутати місцевих рад.</p></div>
+</div></section>
+
+<section><h2>Вибори</h2>
+<p>Вибори — спосіб, яким народ формує органи влади.</p>
+<div class="g">
+<div class="c"><b>Загальні</b><p>Голос мають усі громадяни від 18 років.</p></div>
+<div class="c"><b>Рівні</b><p>Один виборець — один голос.</p></div>
+<div class="c"><b>Прямі</b><p>Голосуємо безпосередньо за кандидата чи партію.</p></div>
+<div class="c"><b>Вільні й таємні</b><p>Без тиску; ніхто не бачить ваш вибір.</p></div>
+</div>
+<p class="mu">Обирають Президента, Верховну Раду, місцеву владу.</p></section>
+
+<section><h2>Чеклист: 5 порад новому виборцю</h2>
+<div class="c"><p><span class="n">1</span><b>Перевір себе у списку.</b> У Державному реєстрі виборців (drv.gov.ua) з’ясуй, чи ти внесений і яка твоя виборча адреса. Помилку виправляй завчасно — звернися до органу ведення реєстру.</p></div></section>
+
+<section><h2>Чеклист</h2>
+<div class="c"><p><span class="n">2</span><b>Аналізуй програми.</b> Чи конкретні обіцянки (строки, гроші, джерела)? Чи це в межах повноважень посади? Що вже робили раніше? Порівняй 2–3 джерела, не вір гучним гаслам.</p></div>
+<br><div class="c"><p><span class="n">3</span><b>Тримай голос таємним.</b> Не фотографуй бюлетень, не показуй його нікому. Таємність захищає від тиску й помсти — це гарантія свободи вибору.</p></div></section>
+
+<section><h2>Чеклист</h2>
+<div class="c"><p><span class="n">4</span><b>Бачиш порушення — не мовчи.</b> Підкуп виборця — кримінальне правопорушення. Зафіксуй факт (час, місце, свідки), зателефонуй 102 і подай письмову скаргу до виборчої комісії чи суду.</p></div>
+<br><div class="c"><p><span class="n">5</span><b>Підготуйся до дня голосування.</b> Візьми паспорт чи ID-картку, дізнайся свою дільницю й час роботи. Рішення — твоє.</p></div></section>
+
+<section><h2>Основні поняття</h2>
+<ul>
+<li><b>Звернення</b> — письмове чи усне прохання до органу влади.</li>
+<li><b>Виборче право</b> — право обирати й бути обраним.</li>
+<li><b>Виборець</b> — громадянин із правом голосу.</li>
+<li><b>Бюлетень</b> — документ для голосування.</li>
+<li><b>Підкуп виборця</b> — гроші чи блага за голос.</li>
+<li><b>Розподіл влади</b> — три незалежні гілки.</li>
+</ul></section>
+
+<section class="fin"><h1>Україна — це ми 💙💛</h1><p>Твій голос має значення. Голосуй свідомо!</p></section>
+</div>
+<nav><div id="bar"></div><button id="p">←</button><span id="pg">1 / 9</span><button id="n">→</button></nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+var d=document.getElementById('deck'),s=d.querySelectorAll('section'),pg=document.getElementById('pg'),bar=document.getElementById('bar'),cur=0;
+function idx(){return Math.round(d.scrollTop/d.clientHeight)}
+function go(i){i=Math.max(0,Math.min(s.length-1,i));d.scrollTo({top:i*d.clientHeight})}
+document.getElementById('n').onclick=function(){go(idx()+1)};
+document.getElementById('p').onclick=function(){go(idx()-1)};
+document.addEventListener('keydown',function(e){if(['ArrowRight','ArrowDown','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(idx()+1)}if(['ArrowLeft','ArrowUp','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(idx()-1)}});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');cur=[].indexOf.call(s,e.target);pg.textContent=(cur+1)+' / '+s.length;bar.style.width=((cur+1)/s.length*100)+'%'}else e.target.classList.remove('in')})},{root:d,threshold:.55});
+s.forEach(function(x){io.observe(x)});
+
+try{
+var T=THREE,cv=document.getElementById('gl'),R=new T.WebGLRenderer({canvas:cv,alpha:true,antialias:true}),sc=new T.Scene(),cam=new T.PerspectiveCamera(45,1,.1,100);
+cam.position.z=8;R.setPixelRatio(Math.min(2,devicePixelRatio));
+sc.add(new T.AmbientLight(0xffffff,.7));var dl=new T.DirectionalLight(0xffffff,.9);dl.position.set(3,5,6);sc.add(dl);
+function M(c){return new T.MeshStandardMaterial({color:c,roughness:.45,metalness:.1})}
+function B(w,h,dp,c,x,y,z){var m=new T.Mesh(new T.BoxGeometry(w,h,dp),M(c));m.position.set(x||0,y||0,z||0);return m}
+var G=[];
+// 0 ballot box
+var g=new T.Group();g.add(B(1.8,1.3,1.3,0x2b59c3));g.add(B(1,.06,.1,0x0a1530,0,.66,.3));var paper=B(.8,1,.03,0xffffff,0,1.05,.3);paper.name='paper';g.add(paper);g.add(B(.9,.1,.02,0xffd500,0,.2,.66));G.push(g);
+// 1 envelope
+g=new T.Group();g.add(B(2.2,1.4,.15,0xffffff));var f=new T.Mesh(new T.CylinderGeometry(.9,.9,.05,3),M(0xffd500));f.rotation.x=Math.PI/2;f.scale.set(1.2,1,.8);f.position.set(0,.3,.1);g.add(f);G.push(g);
+// 2 pillars
+g=new T.Group();g.add(B(3,.2,1.2,0x888fa8,0,-1));[[-1,0x2b59c3,1.8],[0,0xffd500,2.2],[1,0x2b7fff,1.8]].forEach(function(a){var p=new T.Mesh(new T.CylinderGeometry(.3,.3,a[2],24),M(a[1]));p.position.set(a[0],-.9+a[2]/2,0);g.add(p)});g.add(B(3.2,.2,1.3,0x888fa8,0,1.35));G.push(g);
+// 3 knot (checklist)
+g=new T.Group();g.add(new T.Mesh(new T.TorusKnotGeometry(.9,.28,120,16),M(0x2b7fff)));G.push(g);
+// 4 books
+g=new T.Group();g.add(B(2.2,.4,1.5,0x2b59c3,0,-.5));g.add(B(2,.4,1.4,0xffd500,.1,-.1,0));g.add(B(1.8,.4,1.3,0x2b7fff,-.1,.3));G.push(g);
+// 5 flag
+g=new T.Group();var cn=document.createElement('canvas');cn.width=4;cn.height=2;var cx=cn.getContext('2d');cx.fillStyle='#0057b7';cx.fillRect(0,0,4,1);cx.fillStyle='#ffd700';cx.fillRect(0,1,4,1);
+var tx=new T.CanvasTexture(cn);tx.magFilter=T.NearestFilter;var fg=new T.PlaneGeometry(4,2.67,48,24),fl=new T.Mesh(fg,new T.MeshStandardMaterial({map:tx,side:T.DoubleSide,roughness:.7}));fl.position.x=2;g.add(fl);
+var pole=new T.Mesh(new T.CylinderGeometry(.05,.05,4.2,12),M(0xcccccc));pole.position.set(0,-.4,0);g.add(pole);g.position.x=-2;G.push(g);
+var map=[0,1,2,0,3,3,3,4,5];
+G.forEach(function(x){x.scale.setScalar(.001);x.visible=false;sc.add(x)});
+var base=fg.attributes.position.array.slice();
+function size(){var w=innerWidth,h=innerHeight;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+size();addEventListener('resize',size);
+var t0=performance.now();
+(function loop(){requestAnimationFrame(loop);var t=(performance.now()-t0)/1000,wide=innerWidth/innerHeight>1.2,gi=map[cur];
+G.forEach(function(x,i){var tg=i===gi?1:0,k=(wide?1:.7),cs=x.scale.x+(tg*k-x.scale.x)*.08;x.scale.setScalar(Math.max(cs,.001));x.visible=cs>.02;
+if(i===gi){var isF=i===5,px=isF?(wide?-2:-2):(wide?3:0),py=isF?(wide?.3:1.2):(wide?0:2.6);x.position.x+=(px-x.position.x)*.08;x.position.y+=(py-x.position.y)*.08;
+if(!isF){x.rotation.y=t*.7;x.rotation.x=Math.sin(t)*.15}else{x.rotation.y=Math.sin(t*.5)*.15}}});
+var pp=G[0].getObjectByName('paper');if(pp)pp.position.y=1.05+Math.sin(t*2)*.12;
+if(gi===5){var a=fg.attributes.position.array;for(var i=0;i<a.length;i+=3){var x=base[i],y=base[i+1];a[i+2]=Math.sin(x*2.2-t*3+y*.8)*.16*((x+2)/4);a[i+1]=base[i+1]+Math.sin(x*1.5-t*2.5)*.03}fg.attributes.position.needsUpdate=true;fg.computeVertexNormals()}
+R.render(sc,cam)})();
+}catch(e){}
+</script></body></html>
